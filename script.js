@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const sceneNames = ["intro", "cake", "wish", "princess-cake", "cut", "letter", "final"];
+  const sceneNames = ["intro", "cake", "wish", "cut", "take-bite", "thanks-bite", "letter", "final"];
   const scenes = sceneNames.map((name) => document.getElementById(`scene-${name}`));
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let audioContext = null;
@@ -21,7 +21,7 @@
       scene.classList.toggle("active", active);
       scene.setAttribute("aria-hidden", String(!active));
     });
-    if (nextIndex === 6) launchFinalConfetti();
+    if (name === "final") launchFinalConfetti();
   }
 
   document.querySelectorAll("[data-go]").forEach((button) => {
@@ -32,8 +32,8 @@
       if (index === 0 || index === sceneNames.length - 1) return;
       if (event.target instanceof Element && event.target.closest("button, a, input, textarea, select, [contenteditable='true'], [role='textbox']")) return;
       if (index === 2 && candles.some((candle) => !candle.classList.contains("extinguished"))) return;
-      if (index === 4 && !cutStage.classList.contains("sliced")) return;
-      if (index === 5 && !letterReady) return;
+      if (index === 3 && !cutStage.classList.contains("sliced")) return;
+      if (scene.id === "scene-letter" && !letterReady) return;
       showScene(sceneNames[index + 1]);
     });
   });
@@ -55,7 +55,7 @@
     }
   }
   if (!reducedMotion) {
-    createParticles(document.querySelector(".particle-field"), 45, "particle");
+    createParticles(document.querySelector(".global-starfield"), 45, "particle");
     createParticles(document.querySelector(".final-sparkles"), 30, "particle");
   }
 
@@ -113,7 +113,7 @@
     const rect = cutCake.getBoundingClientRect();
     return {
       x: (event.clientX - rect.left) / rect.width * 300,
-      y: (event.clientY - rect.top) / rect.height * 205
+      y: (event.clientY - rect.top) / rect.height * 300
     };
   }
   knife.addEventListener("pointerdown", (event) => {
@@ -156,7 +156,7 @@
       return;
     }
     cutStage.classList.add("sliced");
-    cutStatus.textContent = "A perfect first slice! ✨";
+    cutStatus.textContent = "A perfect first slice!";
     celebrateSlice();
     playChime();
   }
@@ -182,7 +182,7 @@
     candle.classList.add("extinguished");
     candle.setAttribute("aria-label", `${candle.dataset.number} extinguished`);
     const remaining = candles.filter((item) => !item.classList.contains("extinguished")).length;
-    wishStatus.textContent = remaining ? `${remaining} little ${remaining === 1 ? "flame" : "flames"} left. Keep wishing!` : "Wish made. May it find its way to you. ✨";
+    wishStatus.textContent = remaining ? `${remaining} little ${remaining === 1 ? "flame" : "flames"} left. Keep wishing!` : "Wish made. May it find its way to you.";
     playChime();
   }
   candles.forEach((candle, index) => {

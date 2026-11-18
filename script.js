@@ -149,14 +149,14 @@
     knifeDrag = null;
     cutStage.classList.remove("is-dragging");
     if (!crossedCake) {
-      cutStatus.textContent = "Try again—drag the knife right across the cake.";
+      cutStatus.textContent = "Try again—drag the knife across the friendship cake.";
       cutPath.setAttribute("d", "");
       knife.style.left = "16%";
       knife.style.top = "210px";
       return;
     }
     cutStage.classList.add("sliced");
-    cutStatus.textContent = "A perfect first slice!";
+    cutStatus.textContent = "A perfect 200-day celebration slice!";
     celebrateSlice();
     playChime();
   }
@@ -182,7 +182,7 @@
     candle.classList.add("extinguished");
     candle.setAttribute("aria-label", `${candle.dataset.number} extinguished`);
     const remaining = candles.filter((item) => !item.classList.contains("extinguished")).length;
-    wishStatus.textContent = remaining ? `${remaining} little ${remaining === 1 ? "flame" : "flames"} left. Keep wishing!` : "Wish made. May it find its way to you.";
+    wishStatus.textContent = remaining ? `${remaining} little ${remaining === 1 ? "memory" : "memories"} left. Make your friendship wish!` : "Friendship wish made. May we keep creating memories!";
     playChime();
   }
   candles.forEach((candle, index) => {
@@ -261,22 +261,31 @@
       typeLetter();
     }, reducedMotion ? 0 : 550);
   });
-  const birthdayMessage = "Today is all about celebrating you—your hopes, your dreams, and all the wonderful possibilities waiting in the year ahead. May the days to come bring you joy, warmth, little moments of magic, and every reason to smile. Keep shining in your own beautiful way. You deserve a birthday as lovely as you are.";
+  const friendshipMessage = `আসসালামু আলাইকুম বন্ধু
+কেমন আছেন যে, 🙏😁
+বন্ধু তোমার জন্য কি লিখমু বুঝতেছি না, প্রথমেই মাথায় আসে U  একটা শয়তান বেডি। তারপর ও বন্ধুত্বের ২০০ দিন হতে যাচ্ছে,so Congratulation.
+যদিও U একটা গরু, ওসব কোন বড় ব্যাপার না মেন্টালিটি মিললেই হলো। U যেমন আছো এমনই থাকো আর বেশি ভালো মানুষ হওয়ার চেষ্টা করিও না, তোমার বর্তমান ভার্সনটাই ঠিকঠাক 🤝😂।
+আচ্ছা সিরিয়াসলি বলি,অনলাইন ফ্রেন্ডশিপ যে এতদিন থাকবে কখনো ভাবি নাই,কিন্তু আপনার সাথে গালাগলি করা এখন অভ্যাস হয়ে গেছে।
+এমন বন্ধুত্বের সম্পর্ক টিকে থাকুক আরো অনেকদিন, যতদিন তোমার নানিকে আমি কাছে না পাচ্ছি।
+
+Congratulations on completing 200 days of friendship—200 days of random talks, stupid jokes, and unforgettable memories! 😆❤️
+
+তোমার নানির জন্য একটা 🖤`;
   function typeLetter() {
     const letterBody = document.getElementById("letter-body");
     if (letterBody.textContent.length > 0) return;
     if (reducedMotion) {
-      letterBody.textContent = birthdayMessage;
+      letterBody.textContent = friendshipMessage;
       letterReady = true;
     } else {
       let index = 0;
       const writeNext = () => {
-        if (!letterBody.isConnected || letterBody.textContent.length >= birthdayMessage.length) {
+        if (!letterBody.isConnected || letterBody.textContent.length >= friendshipMessage.length) {
           typingTimer = 0;
           letterReady = true;
           return;
         }
-        letterBody.textContent += birthdayMessage[index];
+        letterBody.textContent += friendshipMessage[index];
         index += 1;
         typingTimer = window.setTimeout(writeNext, 19);
       };
@@ -311,13 +320,13 @@
     cutPath.setAttribute("d", "");
     knife.style.left = "";
     knife.style.top = "";
-    cutStatus.textContent = "Hold the knife and sweep across the cake.";
+    cutStatus.textContent = "Hold the knife and sweep across the friendship cake.";
     document.getElementById("cut-confetti").replaceChildren();
     candles.forEach((candle) => {
       candle.classList.remove("extinguished");
       candle.setAttribute("aria-label", `Extinguish ${candle.dataset.number.toLowerCase()}`);
     });
-    wishStatus.textContent = "Five little wishes, just for you.";
+    wishStatus.textContent = "Five little memories, just for us.";
     micNote.classList.add("is-hidden");
     document.getElementById("letter-card").classList.add("is-hidden");
     if (typingTimer) window.clearTimeout(typingTimer);

@@ -161,7 +161,9 @@ main { position: relative; min-height: 100svh; }
 .letter-card { position: absolute; z-index: 6; width: min(440px, 90vw); min-height: 320px; padding: 29px 35px 20px; border: 1px solid #dec9958a; color: #453541; background: linear-gradient(145deg, #fff7e8, #f5e5d6); box-shadow: 0 25px 55px #0009, inset 0 0 40px #d6b56d19; text-align: left; animation: letter-rise .8s cubic-bezier(.2,.8,.2,1) both; }
 .letter-card-top { display: flex; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid #d7c4a4; color: #9c7d4d; font-size: 8px; letter-spacing: .18em; }
 .letter-greeting { margin: 20px 0 9px; color: #674853; font-family: var(--display); font-size: 18px; font-style: italic; }
-.letter-body { min-height: 90px; color: #554650; font-family: var(--display); font-size: 14px; line-height: 1.8; white-space: pre-wrap; }
+.letter-body { min-height: 90px; color: #554650; font-family: var(--display); font-size: 14px; line-height: 1.8; white-space: pre-wrap;max-height: 250px;
+overflow-y: auto;
+overflow-x: hidden; }
 .letter-signoff { margin-top: 12px; color: #765060; font-family: var(--display); font-size: 14px; font-style: italic; }.letter-signoff span { margin-left: 3px; color: #d37e99; }
 .edit-hint { margin: 15px 0 0; color: #9c8991; font-size: 9px; font-style: italic; }
 .final-content { max-width: 650px; }
